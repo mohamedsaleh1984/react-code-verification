@@ -1,6 +1,6 @@
 import './App.css'
-import CodeVer from './components/CodeVer'
-import { AllowedPattern } from './components/AllowedPattern'
+import CodeVer from './CodeVer/CodeVer'
+import { AllowedPattern } from './CodeVer/AllowedPattern'
 
 function App() {
 

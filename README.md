@@ -35,3 +35,8 @@ A react component to handle 6 code verification with different options
         allowedPattern={AllowedPattern.NumbersOnly} splitChar='+'
       />
 ```
+
+### How to use it
+💾 Copy src/CodeVer folder to your react code base, Use the given samples as reference.
+
+Enjoy Coding 💻🍋
