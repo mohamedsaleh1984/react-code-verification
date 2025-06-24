@@ -2,16 +2,22 @@ import { useRef, useState, useEffect } from 'react';
 import "./CodeVer.css";
 import { AllowedPattern } from './AllowedPattern';
 
-
+/**
+ * Props for Code Verification
+ */
 interface Props {
-    expectedCode: string,
-    onValid: () => void,
-    allowedPattern: AllowedPattern
-    cellCssClass?: string,
-    splitChar?: string
+    expectedCode: string, // Expected Correct Code
+    onValid: () => void, // Action to execute onValid
+    onFail: () => void,  // Action to execute onFail
+    allowedPattern: AllowedPattern // Allowed pattern
+    cellCssClass?: string, // CSS Class for Code Cells
+    splitChar?: string  // Splitter Character
 }
 
-function CodeVer({ expectedCode, onValid, allowedPattern, cellCssClass, splitChar }: Props) {
+/**
+ * Code Verification Component
+ */
+function CodeVer({ expectedCode, onValid, onFail, allowedPattern, cellCssClass, splitChar }: Props) {
     const [codes, setCodes] = useState<string[]>(["", "", "", "", "", ""]);
     const refs = [
         useRef<HTMLInputElement>(null),
@@ -27,8 +33,10 @@ function CodeVer({ expectedCode, onValid, allowedPattern, cellCssClass, splitCha
         const enteredCode = codes.join('');
         if (enteredCode.length === 6 && enteredCode === expectedCode) {
             onValid();
+        } else if (enteredCode.length === 6 && enteredCode != expectedCode) {
+            onFail();
         }
-    }, [codes, expectedCode, onValid]);
+    }, [codes, expectedCode, onValid, onFail]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const value = e.target.value;
